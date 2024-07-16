@@ -1,0 +1,14 @@
+body {
+    background-color: #E3E7EB; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card {
+    background-color: #fdfdfd; 
+    width: 650px; 
+    margin: auto; 
+    padding: 40px; 
+    border-radius: 12px; 
+    box-shadow: 2px 2px 8px grey; 
+    margin-top: 100px;
+}
