@@ -1,6 +1,7 @@
 body {
     background-color: #E3E7EB; 
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
 
 .card {
@@ -12,3 +13,56 @@ body {
     box-shadow: 2px 2px 8px grey; 
     margin-top: 100px;
 }
+
+nav {
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.nav-body {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.left {
+    display: flex;
+}
+
+.left img {
+    width: 90px;
+}
+
+.left ul {
+    display: flex;
+    gap: 22px;
+}
+
+.left ul li {
+    list-style-type: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.left ul li:hover {
+    font-weight: 700;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.right button {
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
