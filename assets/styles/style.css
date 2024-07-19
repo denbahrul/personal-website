@@ -31,11 +31,16 @@ nav {
 
 .left ul li {
     list-style-type: none;
+}
+
+.left a {
+    text-decoration: none;
     font-weight: 500;
+    color: black;
     cursor: pointer;
 }
 
-.left ul li:hover {
+.left a:hover {
     font-weight: 700;
 }
 
@@ -142,7 +147,7 @@ nav {
 }
 
 form {
-    width: 500px;
+    max-width: 500px;
     margin: 50px auto;
 }
 
