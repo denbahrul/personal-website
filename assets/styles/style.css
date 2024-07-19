@@ -4,16 +4,6 @@ body {
     margin: 0;
 }
 
-.card {
-    background-color: #fdfdfd; 
-    width: 650px; 
-    margin: auto; 
-    padding: 40px; 
-    border-radius: 12px; 
-    box-shadow: 2px 2px 8px grey; 
-    margin-top: 100px;
-}
-
 nav {
     background-color: white;
     padding: 5px 10px;
@@ -41,11 +31,16 @@ nav {
 
 .left ul li {
     list-style-type: none;
+}
+
+.left a {
+    text-decoration: none;
     font-weight: 500;
+    color: black;
     cursor: pointer;
 }
 
-.left ul li:hover {
+.left a:hover {
     font-weight: 700;
 }
 
@@ -54,7 +49,7 @@ nav {
     align-items: center;
 }
 
-.right button {
+.right a {
     align-items: center;
     background-color: black;
     color: white;
@@ -63,6 +58,131 @@ nav {
     border: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card {
+    background-color: #fdfdfd; 
+    width: 650px; 
+    margin: auto; 
+    padding: 40px; 
+    border-radius: 12px; 
+    box-shadow: 2px 2px 8px grey; 
+    margin-top: 50px;
+}
+
+.card-description {
+    width: 400px;
+    margin: auto;
+}
+
+.card-description h1 {
+    font-size: 24px;
+}
+
+.card-description p {
+    font-size: 14px;
+    font-weight: 500; 
+    text-align: justify;
+}
+
+.card-button-a {
+    margin-top: 24px; 
+    background-color: black; 
+    color: white; 
+    padding: 5px 20px; 
+    border-radius: 18px; 
+    border: none; 
+    display: block; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 400;
+    font-size: medium; 
+    cursor: pointer;
+}
+
+.card-button-b {
+    margin-top: 12px; 
+    background-color: white; 
+    border: none; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: medium; 
+    cursor: pointer;
+}
+
+.card-button-b i {
+    margin-left: 10px;
+}
+
+.social-media {
+    color: black; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin: 20px 0px;
+}
+
+.social-media a {
+    color: black; 
+    font-size: 28px;
+}
+
+.img-card {
+    width: 250px; 
+    margin: auto; 
+    background-color: #FFFFFF; 
+    box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.285); 
+    border-radius: 12px;
+}
+
+.img-card img {
+    width: 100%; 
+    border-radius: 12px 12px 0px 0px
+}
+
+.img-card-desc {
+    padding: 10px 0px; 
+    text-align: center;
+}
+
+form {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+input, select, textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    margin-top: 4px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.285);
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+form div {
+    margin-bottom: 18px;
+}
+
+form label {
+    font-weight: 600;
+}
+
+form button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 30px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    float: right;
     cursor: pointer;
 }
 

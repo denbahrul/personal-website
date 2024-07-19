@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Web</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a1c7b5f76.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-body">
+            <div class="left">
+                <img src="./assets/images/bahrul.svg" alt="logo">
+                <ul>
+                    <li>
+                        <a href="./index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="./index.html">My Project</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <a href="./contact.html">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+    <form>
+        <div>
+            <label for="nameInput">Name</label>
+            <input id="nameInput" type="text" required>
+        </div>
+        <div>
+            <label for="emailInput">Email</label>
+            <input id="emailInput" type="email"  required>
+        </div>
+        <div>
+            <label for="phoneInput">Phone Number</label>
+            <input id="phoneInput" type="number" required>
+        </div>
+        <div>
+            <label for="SubjectInput">Subject</label>
+            <select id="SubjectInput">
+                <option hidden></option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Fullstack Developer</option>
+            </select>
+        </div>
+        <div>
+            <label for="messageInput">Your Message</label>
+            <textarea id="messageInput"></textarea>
+        </div>
+        <div>
+            <button type="button" onclick="getData()">submit</button>
+        </div>
+    </form>
+</body>
+<script src="./assets/script/script.js"></script>
+</html>
