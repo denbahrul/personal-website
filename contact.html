@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Web</title>
+    <link rel="icon" href="./assets/images/logo.svg" />
+    <title>Contact Me - Personal Web</title>
     <link rel="stylesheet" href="./assets/styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0a1c7b5f76.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="contact">
+    <!-- NavBar -->
     <nav>
         <div class="nav-body">
             <div class="left">
@@ -20,7 +22,7 @@
                         <a href="./index.html">Home</a>
                     </li>
                     <li>
-                        <a href="./index.html">My Project</a>
+                        <a href="./myproject.html">My Project</a>
                     </li>
                 </ul>
             </div>
@@ -29,7 +31,10 @@
             </div>
         </div>
     </nav>
+
+    <!-- Form -->
     <form>
+        <h1>GET IN TOUCH</h1>
         <div>
             <label for="nameInput">Name</label>
             <input id="nameInput" type="text" required>
@@ -55,7 +60,7 @@
             <label for="messageInput">Your Message</label>
             <textarea id="messageInput"></textarea>
         </div>
-        <div>
+        <div class="button">
             <button type="button" onclick="getData()">submit</button>
         </div>
     </form>
