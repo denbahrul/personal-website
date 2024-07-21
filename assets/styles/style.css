@@ -270,6 +270,15 @@ form button {
     border-radius: 8px;
 }
 
+.project-body a {
+    text-decoration: none;
+    color: black;
+}
+
+.project-body a:hover {
+    text-decoration: underline;
+}
+
 .project-card h2 {
     font-size: medium;
     margin: 0px;
@@ -318,4 +327,66 @@ form button {
     font-size: medium; 
     cursor: pointer;
     margin-bottom: 5px;
+}
+
+/* Detail */
+
+.project-detail {
+    max-width: 900px;
+    padding: 10px 5px;
+    margin: auto;
+}
+
+.project-detail h1 {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 800;
+}
+
+.project-content {
+    display: flex;
+    gap: 35px;
+}
+
+.project-content img {
+    width: 60%;
+}
+
+.project-content h2 {
+    font-size: large;
+    font-weight: 600;
+}
+
+.project-content i {
+    margin-right: 8px;
+}
+
+.project-content p {
+    font-size: medium;
+    font-weight: 500;
+}
+
+.tech {
+    margin-top: 50px;
+}
+
+.tech-icon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tech-icon p {
+    margin-right: 10px;
+    margin-top: 2px
+}
+
+.project-detail pre {
+    width: 900px;
+}
+
+.project-description {
+    margin-top: 40px;
+    text-align: justify;
+    font-size: small;
+    font-weight: 500;
 }
