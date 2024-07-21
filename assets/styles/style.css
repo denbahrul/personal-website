@@ -66,9 +66,13 @@ nav {
 
 /* Card */
 
+.content {
+    padding: 12px;
+}
+
 .card {
     background-color: #fdfdfd; 
-    width: 650px; 
+    width: 90%px; 
     margin: auto; 
     padding: 40px; 
     border-radius: 12px; 
@@ -77,7 +81,7 @@ nav {
 }
 
 .card-description {
-    width: 400px;
+    width: 80%;
     margin: auto;
 }
 
@@ -189,6 +193,11 @@ form label {
     font-weight: 600;
 }
 
+form .button {
+    display: flex;
+    justify-content: end;
+}
+
 form button {
     background-color: black;
     color: white;
@@ -197,7 +206,6 @@ form button {
     padding: 10px 32px;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 500;
-    
     cursor: pointer;
     margin-top: 14px;
 }
@@ -234,8 +242,6 @@ form button {
     width: auto;
     cursor: pointer;
 }
-
-
 /* My Project */
 
 .project-body {
@@ -355,6 +361,7 @@ form button {
 .project-content h2 {
     font-size: large;
     font-weight: 600;
+    margin-bottom: 5px;
 }
 
 .project-content i {
@@ -375,13 +382,17 @@ form button {
     grid-template-columns: 1fr 1fr;
 }
 
-.tech-icon p {
-    margin-right: 10px;
-    margin-top: 2px
+.tech-icon div {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    text-align: center;
+    margin-right: 12px;
+    gap: 8px;
 }
 
-.project-detail pre {
-    width: 900px;
+.tech-icon img {
+    max-width: 30px; 
 }
 
 .project-description {
@@ -390,3 +401,47 @@ form button {
     font-size: small;
     font-weight: 500;
 }
+
+@media only screen and (min-width: 600px) {
+    .content {
+        max-width: 900px; 
+        margin: auto;
+    }
+    .card {
+        padding: 40px; 
+        border-radius: 12px; 
+        box-shadow: 2px 2px 8px grey; 
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 50px;
+    }
+
+    .card-button-a {
+        margin-top: 18px;
+        margin-bottom: 18px; 
+        display: inline; 
+    }
+
+    .social-media {
+        color: black; 
+        display: flex; 
+        justify-content: start; 
+        gap: 10px; 
+        margin: 20px 0px;
+    }
+
+    .card-description {
+        width: 100%;
+        margin: auto;
+    }
+
+    .img-card {
+        width: 100%; 
+        margin: auto; 
+        background-color: #FFFFFF; 
+        box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.285); 
+        border-radius: 12px;
+    }
+  }
+  

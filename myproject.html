@@ -32,28 +32,28 @@
         </div>
     </nav>
     <!-- Form -->
-    <form>
+    <form onsubmit="addProject(event)">
         <h1>ADD MY PROJECT</h1>
         <div>
-            <label for="projectName">Project Name</label>
-            <input id="projectName" type="text" required>
+            <label for="project-name-input">Project Name</label>
+            <input id="project-name-input" type="text" required>
         </div>
         <div class="date-form">
             <div>
-                <label for="endDate">End Date</label>
-                <input id="endDate" type="date"  required>
+                <label for="start-date-input">Start Date</label>
+                <input id="start-date-input" type="date"  required>
             </div>
             <div>
-                <label for="startDate">Start Date</label>
-                <input id="startDate" type="date"  required>
+                <label for="end-date-input">End Date</label>
+                <input id="end-date-input" type="date"  required>
             </div>
         </div>
         <div>
-            <label for="descriptionInput">Description</label>
-            <textarea id="descriptionInput"></textarea>
+            <label for="description-input">Description</label>
+            <textarea id="description-input"></textarea>
         </div>
         <div class="checkbox-form">
-            <p for="technologies">Technologies</p>
+            <p>Technologies</p>
             <div class="checkbox-list">
                 <div>
                     <input type="checkbox" id="technologies1" name="technologies1">
@@ -74,18 +74,18 @@
             </div>
         </div>
         <div>
-            <label for="uploadImage">Upload Image</label>
-            <input id="uploadImage" type="file">
+            <label for="upload-image">Upload Image</label>
+            <input id="upload-image" type="file">
         </div>
-        <div>
-            <button type="button" onclick="getData()">submit</button>
+        <div class="button">
+            <button type="submit">submit</button>
         </div>
     </form>
     <!-- Project List -->
     <div class="project-body">
         <h1>MY PROJECT</h1>
-        <div class="project-list">
-
+        <div class="project-list" id="content">
+<!-- 
             <div class="project-card">
                 <img src="./assets/images/project.png" alt="image card">
                 <a href="./detail.html">
@@ -136,9 +136,10 @@
                     <button>edit</button>
                     <button>delete</button>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
 </body>
+<script src="./assets/script/project.js"></script>
 </html>
