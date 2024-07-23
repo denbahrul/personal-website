@@ -269,6 +269,7 @@ form button {
     border-radius: 12px; 
     box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.409); 
     margin-bottom: 12px;
+    box-sizing: border-box;
 }
 
 .project-card img {
@@ -303,6 +304,7 @@ form button {
     font-size: small;
     font-weight: 500;
     margin: 20px 0px;
+    height: auto;
 }
 
 .card-icon {

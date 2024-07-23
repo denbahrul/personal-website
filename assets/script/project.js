@@ -8,10 +8,12 @@ function addProject(event) {
     let endDate = document.getElementById("end-date-input").value;
     let description = document.getElementById("description-input").value;
 
+    let durationTime = new Date(endDate) - new Date(startDate);
+
     let project = {
         title,
-        startDate,
-        endDate,
+        durationTime,
+        postAt: new Date(),
         description
     }
 
@@ -31,7 +33,7 @@ function renderProject() {
             <a href="./detail.html">
                 <h2>${dataProject[i].title}</h2>
             </a>
-            <p class="duration">durasi : 3 bulan</p>
+            <p class="duration">durasi : ${getDurationTime(dataProject[i].durationTime)}</p>
             <p class="description">${dataProject[i].description}</p>
             <div class="card-icon">
                 <img src="./assets/icon/play store.png" alt="play store">
@@ -44,5 +46,32 @@ function renderProject() {
             </div>
         </div>
         `
+    }
+}
+
+function getDurationTime(time) {
+    let durationTime = time;
+
+    let miliSecond = 1000;
+    let secondInDay = 86400;
+    let dayInMonth = 30;
+    let monthInYear =12;
+
+    let durationTimeInDay = Math.floor(durationTime / (miliSecond * secondInDay));
+    let durationTimeInMonth = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth));
+    let durationTimeInYear = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth * monthInYear));
+
+    let restOfMonthInYear = Math.floor((durationTime%(miliSecond * secondInDay * dayInMonth * monthInYear)) / (miliSecond * secondInDay * dayInMonth))
+
+    if (durationTimeInYear > 0 ) {
+        if (restOfMonthInYear > 0) {
+            return `${durationTimeInYear} tahun ${restOfMonthInYear} bulan`;
+        } else {
+            return `${durationTimeInYear} tahun`;
+        }
+    } else if (durationTimeInMonth > 0 ) {
+        return `${durationTimeInMonth} bulan`;
+    } else {
+        return `${durationTimeInDay} hari`
     }
 }
