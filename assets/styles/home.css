@@ -1,0 +1,160 @@
+/* Card */
+
+.content {
+    padding: 24px;
+}
+
+.card {
+    background-color: #fdfdfd;  
+    margin: auto; 
+    padding: 30px 40px; 
+    border-radius: 10px; 
+    box-shadow: 2px 2px 8px rgb(188, 188, 188); 
+    margin-top: 20px;
+}
+
+.card-description {
+    margin: auto;
+}
+
+.card-description h1 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.card-description p {
+    font-size: 14px;
+    font-weight: 500; 
+    text-align: justify;
+}
+
+.card-button-a {
+    margin-top: 24px; 
+    background-color: black; 
+    color: white; 
+    padding: 5px 20px; 
+    border-radius: 18px; 
+    border: none; 
+    display: block; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 400;
+    font-size: medium; 
+    cursor: pointer;
+}
+
+.card-button-b {
+    margin-top: 12px; 
+    background-color: white; 
+    border: none; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: medium; 
+    cursor: pointer;
+}
+
+.card-button-b i {
+    margin-left: 10px;
+}
+
+.social-media {
+    color: black; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin: 20px 0px;
+}
+
+.social-media a {
+    color: black; 
+    font-size: 28px;
+}
+
+.img-card {
+    width: 200px; 
+    margin: auto; 
+    background-color: #FFFFFF; 
+    box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.285); 
+    border-radius: 12px;
+}
+
+.img-card img {
+    width: 100%;
+    border-radius: 12px 12px 0px 0px
+}
+
+.img-card div {
+    padding: 10px 0px; 
+    text-align: center;
+}
+
+.img-card h2 {
+    font-weight: 800;
+    font-size: small; 
+    margin: 0;
+}
+
+.img-card p {
+    font-weight: 500;
+    font-size: x-small; 
+    margin: 0;
+}
+
+@media screen and (min-width: 575px) {
+    .card {
+        width: 70%;
+    }
+
+    .img-card {
+        width: 230px;
+    }
+
+    .img-card h2 {
+        font-size: medium;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .content {
+        max-width: 900px; 
+        margin: auto;
+    }
+    .card {
+        width: fit-content;
+        padding: 40px; 
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 50px;
+    }
+
+    .card-description h1 {
+        font-size: 24px;
+    }
+
+    .card-button-a {
+        margin-top: 18px;
+        margin-bottom: 18px; 
+        display: inline; 
+    }
+
+    .social-media {
+        color: black; 
+        display: flex; 
+        justify-content: start; 
+        gap: 10px; 
+        margin: 20px 0px;
+    }
+
+    .card-description {
+        width: 100%;
+        margin: auto;
+    }
+
+    .img-card {
+        width: 100%; 
+        margin: auto; 
+        background-color: #FFFFFF; 
+        box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.285); 
+        border-radius: 12px;
+    }
+  }

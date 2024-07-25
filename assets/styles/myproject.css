@@ -1,0 +1,160 @@
+
+/* Form */
+
+.date-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    gap: 10px;
+}
+
+.date-form div {
+    flex-grow: 1;
+}
+
+.checkbox-form p{
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkbox-list {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+.checkbox-list label {
+    font-weight: 600;
+    color: #696969;
+}
+
+.checkbox-list input {
+    width: auto;
+    cursor: pointer;
+}
+
+/* My Project */
+
+.project-body {
+    background-color: white;
+    padding: 10px 24px;
+}
+
+.project-body h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: x-large;
+    font-weight: 800;
+}
+
+.project-list {
+    max-width: 900px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    gap: 8px;
+}
+
+.project-card {
+    background-color: #fdfdfd; 
+    margin: auto; 
+    padding: 10px; 
+    border-radius: 12px; 
+    box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.409); 
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.project-body a {
+    text-decoration: none;
+    color: black;
+}
+
+.project-body a:hover {
+    text-decoration: underline;
+}
+
+.project-card h2 {
+    font-size: medium;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.project-card .duration {
+    font-size: small;
+    font-weight: 500;
+    margin-top: 0px ;
+    color: #696969;
+}
+
+.project-card .description {
+    font-size: small;
+    font-weight: 500;
+    margin: 20px 0px;
+    height: auto;
+}
+
+.card-icon {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.card-icon img {
+    width: 20px;
+}
+
+.myproject-button {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+.myproject-button button {
+    background-color: black; 
+    color: white; 
+    padding: 5px 20px; 
+    border-radius: 8px; 
+    border: none; 
+    display: block; 
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 400;
+    font-size: medium; 
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 769px) {
+    .project-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+}
+
+@media screen and (max-width: 577px ) {
+    .project-list {
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 450px ) {
+    .project-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 345px) {
+    .date-form {
+        flex-direction: column;
+        gap: 0;
+    }
+}
