@@ -151,3 +151,10 @@
         gap: 8px;
     }
 }
+
+@media screen and (max-width: 345px) {
+    .date-form {
+        flex-direction: column;
+        gap: 0;
+    }
+}

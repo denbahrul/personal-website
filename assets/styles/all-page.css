@@ -2,6 +2,7 @@ body {
     background-color: #E3E7EB; 
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    padding-top: 60px;
 }
 
 /* Navbar */
@@ -9,6 +10,10 @@ body {
 nav {
     background-color: white;
     padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
 }
 
 .nav-body {
@@ -29,6 +34,7 @@ nav {
 .left ul {
     display: flex;
     gap: 22px;
+    align-items: center;
 }
 
 .left ul li {
@@ -56,13 +62,69 @@ nav {
     background-color: black;
     color: white;
     padding: 8px 18px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: none;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
+    font-size: medium;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
 }
+
+/* Dropdowm */
+.dropdown-button {
+    display: none;
+    border: none;
+    background-color: white;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px 20px;
+    max-width: 200px;
+    margin: auto;
+} 
+
+.dropdown-nav-list {
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    font-weight: 600;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.dropdown-nav-list:hover {
+    border: 1px solid black;
+}
+
+.contact-me-nav {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.contact-me-nav:hover {
+    color: black;
+    background-color: white;
+}
+
+.hide {
+    display: none;
+}
+
 
 /* Form */
 
@@ -127,6 +189,18 @@ form button {
 
     form {
         padding: 0px 30px;
+    }
+
+    .right a {
+        display: none;
+    }
+
+    .dropdown-button {
+        display: block;
+    }
+
+    .dropdown-nav-menu {
+        display: flex !important;
     }
 
 }

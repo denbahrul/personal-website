@@ -13,6 +13,7 @@
         <script src="https://kit.fontawesome.com/0a1c7b5f76.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <!-- NavBar -->
         <nav>
             <div class="nav-body">
                 <div class="left">
@@ -28,9 +29,19 @@
                 </div>
                 <div class="right">
                     <a href="./contact.html">Contact Me</a>
+                    <button class="dropdown-button" onclick="toggleDropdown()">
+                        <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
+                    </button>
                 </div>
             </div>
+            <div class="hide" id="dropdown-nav-menu">
+                <a href="./index.html" class="dropdown-nav-list">Home</a>
+                <a href="./myproject.html" class="dropdown-nav-list">My Project</a>
+                <a href="./contact.html" class="contact-me-nav">Contact Me</a>
+            </div>
         </nav>
+
+        <!-- Content -->
         <div class="content">
             <div class="card">
                 <div class="card-description">
@@ -60,4 +71,5 @@
             </div>
         </div>
     </body>
+    <script src="./assets/script/navbar.js"></script>
 </html>
