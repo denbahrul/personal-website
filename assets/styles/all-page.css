@@ -2,7 +2,6 @@ body {
     background-color: #E3E7EB; 
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    padding-top: 60px;
 }
 
 /* Navbar */
@@ -129,6 +128,7 @@ nav {
 /* Form */
 
 form {
+    padding-top: 60px;
     max-width: 500px;
     margin: 50px auto;
 }
