@@ -1,23 +1,30 @@
+// class - (cetakan) - class Testimonials{}
+
 class Testimonials {
+    // properties
     image = ""
     content = ""
     author = ""
 
+    // special method
     constructor(image, content, author) {
         this.image = image
         this.content = content
         this.author = author
     };
 
+    // method
     html() {
         return `
             <div class="card">
                 <img src=${this.image}>
-                <p class="testimonial-words">${this.content}</p>
+                <p class="testimonial-words">"${this.content}"</p>
                 <p class="author">- ${this.author}</p>
             </div>`
     };   
 };
+
+// Object - (Isi) - new Testimonisls()
 
 const testimonial1 = new Testimonials("https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Mantap bang!", "Nathan Tjoe A On");
 const testimonial2 = new Testimonials("https://images.pexels.com/photos/1192609/pexels-photo-1192609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Terbaik, menyala abangku!", "Elon Musk");
