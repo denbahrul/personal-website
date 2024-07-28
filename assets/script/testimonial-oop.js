@@ -1,4 +1,4 @@
-// class - (cetakan) - class Testimonials{}
+// class - (cetakan) - ex = class Testimonials{}
 
 class Testimonials {
     // properties
@@ -24,7 +24,7 @@ class Testimonials {
     };   
 };
 
-// Object - (Isi) - new Testimonisls()
+// Object - (Isi) - ex = new Testimonisls()
 
 const testimonial1 = new Testimonials("https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Mantap bang!", "Nathan Tjoe A On");
 const testimonial2 = new Testimonials("https://images.pexels.com/photos/1192609/pexels-photo-1192609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Terbaik, menyala abangku!", "Elon Musk");
