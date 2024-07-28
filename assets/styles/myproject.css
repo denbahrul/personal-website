@@ -58,17 +58,20 @@
 
 .project-card {
     background-color: #fdfdfd; 
-    margin: auto; 
+    margin: auto;
     padding: 10px; 
     border-radius: 12px; 
     box-shadow: 2px 2px 8px rgba(128, 128, 128, 0.409); 
     margin-bottom: 12px;
     box-sizing: border-box;
+    width: 100%;
 }
 
-.project-card img {
+.card-image {
     width: 100%;
+    height: 200px;
     border-radius: 8px;
+    object-fit: cover;
 }
 
 .project-body a {
@@ -98,7 +101,13 @@
     font-size: small;
     font-weight: 500;
     margin: 20px 0px;
-    height: auto;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    -webkit-line-clamp: 3; 
+    line-height: 1.2; 
+    height: calc(1.2em * 3); 
 }
 
 .card-icon {
@@ -123,12 +132,10 @@
     padding: 5px 20px; 
     border-radius: 8px; 
     border: none; 
-    display: block; 
     font-family: 'Montserrat', sans-serif; 
     font-weight: 400;
     font-size: medium; 
     cursor: pointer;
-    margin-bottom: 5px;
 }
 
 @media screen and (max-width: 769px) {

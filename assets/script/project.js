@@ -7,14 +7,18 @@ function addProject(event) {
     let startDate = document.getElementById("start-date-input").value;
     let endDate = document.getElementById("end-date-input").value;
     let description = document.getElementById("description-input").value;
+    let image = document.getElementById("upload-image").files;
+
 
     let durationTime = new Date(endDate) - new Date(startDate);
+
+    image = URL.createObjectURL(image[0])
 
     let project = {
         title,
         durationTime,
-        postAt: new Date(),
-        description
+        description,
+        image
     }
 
     dataProject.push(project);
@@ -29,7 +33,7 @@ function renderProject() {
     for (let i=0; i < dataProject.length; i++) {
         document.getElementById("content").innerHTML += `
         <div class="project-card">
-            <img src="./assets/images/project.png" alt="image card">
+            <img src="${dataProject[i].image}" class="card-image" alt="image card">
             <a href="./detail.html">
                 <h2>${dataProject[i].title}</h2>
             </a>
