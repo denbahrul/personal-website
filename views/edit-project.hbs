@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/assets/images/logo.svg" />
+        <title>My Project - Personal Web</title>
+        <link rel="stylesheet" href="/assets/styles/all-page.css">
+        <link rel="stylesheet" href="/assets/styles/myproject.css">
+        <link rel="stylesheet" href="/assets/styles/home.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/0a1c7b5f76.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- NavBar -->
+        <nav>
+            <div class="nav-body">
+                <div class="left">
+                    <img src="/assets/images/bahrul.svg" alt="logo">
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/project">Add Project</a>
+                        </li>
+                        <li>
+                            <a href="/testimonials">Testimonials</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <a href="/contact">Contact Me</a>
+                    <button class="dropdown-button" onclick="toggleDropdown()">
+                        <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hide" id="dropdown-nav-menu">
+                <a href="/" class="dropdown-nav-list">Home</a>
+                <a href="/myproject" class="dropdown-nav-list">My Project</a>
+                <a href="/testimonials" class="dropdown-nav-list">Testimonials</a>
+                <a href="/contact" class="contact-me-nav">Contact Me</a>
+            </div>
+        </nav>
+
+        <!-- Form -->
+        <form action="/edit-project/{{data.id}}" method="POST">
+            <h1>UPDATE PROJECT</h1>
+            <input name="id" value="{{data.id}}" type="text" hidden>
+            <div>
+                <label for="project-name-input">Project Name</label>
+                <input id="project-name-input" name="title" value="{{data.title}}" type="text" required>
+            </div>
+            <div class="date-form">
+                <div>
+                    <label for="start-date-input">Start Date</label>
+                    <input id="start-date-input" name="startDate" value="{{data.startDate}}" type="date"  required>
+                </div>
+                <div>
+                    <label for="end-date-input">End Date</label>
+                    <input id="end-date-input" name="endDate" value="{{data.endDate}}" type="date"  required>
+                </div>
+            </div>
+            <div>
+                <label for="description-input">Description</label>
+                <textarea id="description-input" name="description">{{data.description}}</textarea>
+            </div>
+            <div class="checkbox-form">
+                <p>Technologies</p>
+                <div class="checkbox-list">
+                    <div>
+                        <input type="checkbox" id="technologies1" name="technologies1">
+                        <label for="technologies1">Node Js</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="technologies2" name="technologies2">
+                        <label for="technologies2">React Js</label><br>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="technologies3" name="technologies3">
+                        <label for="technologies3">Next Js</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="technologies4" name="technologies4">
+                        <label for="technologies4">TypeScript</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="upload-image">Upload Image</label>
+                <input id="upload-image" name="image" value="{{data.image}}" type="file">
+            </div>
+            <div class="button">
+                <button type="submit">submit</button>
+            </div>
+        </form>
+    </body>
+    <script src="/assets/script/project.js"></script>
+    <script src="/assets/script/navbar.js"></script>
+</html>

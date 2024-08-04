@@ -83,7 +83,7 @@
                 {{#each data}}
                     <div class="project-card">
                         <img src="/assets/images/project.png" class="card-image" alt="image card">
-                        <a href="./detail/{{this.id}}">
+                        <a href="./project-detail/{{this.id}}">
                             <h2>{{this.title}}</h2>
                         </a>
                         <p class="duration">durasi : {{this.startDate}}</p>
@@ -94,8 +94,8 @@
                             <img src="./assets/icon/java.png" alt="java">
                         </div>
                         <div class="myproject-button">
-                            <button>edit</button>
-                            <button>delete</button>
+                            <a href="/edit-project/{{this.id}}">edit</a>
+                            <a>delete</a>
                         </div>
                     </div>
                 {{/each}}
