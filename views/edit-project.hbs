@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="./assets/images/logo.svg" />
+        <link rel="icon" href="/assets/images/logo.svg" />
         <title>My Project - Personal Web</title>
-        <link rel="stylesheet" href="./assets/styles/all-page.css">
-        <link rel="stylesheet" href="./assets/styles/myproject.css">
+        <link rel="stylesheet" href="/assets/styles/all-page.css">
+        <link rel="stylesheet" href="/assets/styles/myproject.css">
         <link rel="stylesheet" href="/assets/styles/home.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
         <nav>
             <div class="nav-body">
                 <div class="left">
-                    <img src="./assets/images/bahrul.svg" alt="logo">
+                    <img src="/assets/images/bahrul.svg" alt="logo">
                     <ul>
                         <li>
                             <a href="/">Home</a>
@@ -32,7 +32,7 @@
                     </ul>
                 </div>
                 <div class="right">
-                    <a href="./contact">Contact Me</a>
+                    <a href="/contact">Contact Me</a>
                     <button class="dropdown-button" onclick="toggleDropdown()">
                         <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
                     </button>
@@ -47,25 +47,26 @@
         </nav>
 
         <!-- Form -->
-        <form action="/add-project" method="POST">
-            <h1>ADD MY PROJECT</h1>
+        <form action="/edit-project/{{data.id}}" method="POST">
+            <h1>UPDATE PROJECT</h1>
+            <input name="id" value="{{data.id}}" type="text" hidden>
             <div>
                 <label for="project-name-input">Project Name</label>
-                <input id="project-name-input" name="title" type="text" required>
+                <input id="project-name-input" name="title" value="{{data.title}}" type="text" required>
             </div>
             <div class="date-form">
                 <div>
                     <label for="start-date-input">Start Date</label>
-                    <input id="start-date-input" name="startDate" type="date"  required>
+                    <input id="start-date-input" name="startDate" value="{{data.startDate}}" type="date"  required>
                 </div>
                 <div>
                     <label for="end-date-input">End Date</label>
-                    <input id="end-date-input" name="endDate" type="date"  required>
+                    <input id="end-date-input" name="endDate" value="{{data.endDate}}" type="date"  required>
                 </div>
             </div>
             <div>
                 <label for="description-input">Description</label>
-                <textarea id="description-input" name="description"></textarea>
+                <textarea id="description-input" name="description">{{data.description}}</textarea>
             </div>
             <div class="checkbox-form">
                 <p>Technologies</p>
@@ -90,41 +91,13 @@
             </div>
             <div>
                 <label for="upload-image">Upload Image</label>
-                <input id="upload-image" name="image" type="file">
+                <input id="upload-image" name="image" value="{{data.image}}" type="file">
             </div>
             <div class="button">
                 <button type="submit">submit</button>
             </div>
         </form>
-
-                <!-- Project List -->
-        {{!-- <div class="project-body">
-            <h1>MY PROJECT</h1>
-            <div class="project-list" id="content">
-
-                {{#each data}}
-                    <div class="project-card">
-                        <img src="/assets/images/project.png" class="card-image" alt="image card">
-                        <a href="./detail.html">
-                            <h2>{{this.title}}</h2>
-                        </a>
-                        <p class="duration">durasi : {{this.startDate}}</p>
-                        <p class="description">{{this.description}}</p>
-                        <div class="card-icon">
-                            <img src="./assets/icon/play store.png" alt="play store">
-                            <img src="./assets/icon/android.png" alt="android">
-                            <img src="./assets/icon/java.png" alt="java">
-                        </div>
-                        <div class="myproject-button">
-                            <button>edit</button>
-                            <button>delete</button>
-                        </div>
-                    </div>
-                {{/each}}
-
-            </div>
-        </div> --}}
     </body>
-    <script src="./assets/script/project.js"></script>
-    <script src="./assets/script/navbar.js"></script>
+    <script src="/assets/script/project.js"></script>
+    <script src="/assets/script/navbar.js"></script>
 </html>

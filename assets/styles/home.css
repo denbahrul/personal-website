@@ -256,16 +256,14 @@
     gap: 5px;
 }
 
-.myproject-button button {
+.myproject-button a {
     background-color: black; 
     color: white; 
     padding: 5px 20px; 
     border-radius: 8px; 
-    border: none; 
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 400;
-    font-size: medium; 
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 769px) {
