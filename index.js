@@ -17,12 +17,13 @@ app.get('/testimonials', renderTestimnonials);
 app.get('/contact', renderContac);
 app.get('/project-detail/:project_id', renderProjectDetail);
 app.get('/edit-project/:project_id', renderEditProject);
-app.post('/edit-project/:project_id', editProject)
-
+app.post('/edit-project/:project_id', editProject);
+app.get('/delete-project/:project_id', deleteProject);
 
 app.listen(port, () => {
     console.log(`Aplikasi berjalan pada port ${port}`);
 })
+
 
 function renderHome(req, res) {
     res.render("index", {
@@ -31,7 +32,6 @@ function renderHome(req, res) {
 };
 
 // Project Post
-
 function renderProject(req, res) {
     res.render("add-project");
 };
@@ -94,6 +94,15 @@ function editProject(req, res) {
     res.redirect('/');
 }
 
+function deleteProject(req, res) {
+    const id = req.params.project_id;
+
+    const index = projects.findIndex( project => project.id == id );
+
+    projects.splice(index, 1);
+
+    res.redirect('/');
+}
 // End Project Post
 
 function renderTestimnonials(req, res) {
