@@ -1,12 +1,16 @@
 const express = require('express');
+const serverless = require('serverless-http');
+
 const app = express();
+const router = express.Router();
 const port = 3000;
 
 app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }));
+
 
 const projects = []
 
@@ -20,9 +24,11 @@ app.get('/edit-project/:project_id', renderEditProject);
 app.post('/edit-project/:project_id', editProject);
 app.get('/delete-project/:project_id', deleteProject);
 
+app.use('/.netlify/functions/api', router);
+
 app.listen(port, () => {
     console.log(`Aplikasi berjalan pada port ${port}`);
-})
+});
 
 
 function renderHome(req, res) {
@@ -112,3 +118,6 @@ function renderTestimnonials(req, res) {
 function renderContac(req, res) {
     res.render("contact");
 };
+
+module.exports = app;
+module.exports.handler = serverless(app);
