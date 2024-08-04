@@ -168,6 +168,7 @@
 .project-body {
     background-color: white;
     padding: 10px 24px;
+    padding-bottom: 80px;
 }
 
 .project-body h1 {

@@ -23,7 +23,7 @@
                             <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="/project">My Project</a>
+                            <a href="/project">Add Project</a>
                         </li>
                         <li>
                             <a href="/testimonials">Testimonials</a>
@@ -80,57 +80,25 @@
             <h1>MY PROJECT</h1>
             <div class="project-list" id="content">
     
-                <div class="project-card">
-                    <img src="./assets/images/project.png" class="card-image" alt="image card">
-                    <a href="/detail">
-                        <h2>Dumbways Mobile App - 2021</h2>
-                    </a>
-                    <p class="duration">durasi : 3 bulan</p>
-                    <p class="description">Lorem ipsum dolor sit amet.</p>
-                    <div class="card-icon">
-                        <img src="./assets/icon/play store.png" alt="play store">
-                        <img src="./assets/icon/android.png" alt="android">
-                        <img src="./assets/icon/java.png" alt="java">
+                {{#each data}}
+                    <div class="project-card">
+                        <img src="/assets/images/project.png" class="card-image" alt="image card">
+                        <a href="./detail.html">
+                            <h2>{{this.title}}</h2>
+                        </a>
+                        <p class="duration">durasi : {{this.startDate}}</p>
+                        <p class="description">{{this.description}}</p>
+                        <div class="card-icon">
+                            <img src="./assets/icon/play store.png" alt="play store">
+                            <img src="./assets/icon/android.png" alt="android">
+                            <img src="./assets/icon/java.png" alt="java">
+                        </div>
+                        <div class="myproject-button">
+                            <button>edit</button>
+                            <button>delete</button>
+                        </div>
                     </div>
-                    <div class="myproject-button">
-                        <button>edit</button>
-                        <button>delete</button>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="./assets/images/meee.jpg" class="card-image" alt="image card">
-                    <a href="/detail">
-                        <h2>Dumbways Mobile App - 2021</h2>
-                    </a>
-                    <p class="duration">durasi : 3 bulan</p>
-                    <p class="description">Lorem </p>
-                    <div class="card-icon">
-                        <img src="./assets/icon/play store.png" alt="play store">
-                        <img src="./assets/icon/android.png" alt="android">
-                        <img src="./assets/icon/java.png" alt="java">
-                    </div>
-                    <div class="myproject-button">
-                        <button>edit</button>
-                        <button>delete</button>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="./assets/images/me.jpg" class="card-image" alt="image card">
-                    <a href="/detail">
-                        <h2>Dumbways Mobile App - 2021</h2>
-                    </a>
-                    <p class="duration">durasi : 3 bulan</p>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="card-icon">
-                        <img src="./assets/icon/play store.png" alt="play store">
-                        <img src="./assets/icon/android.png" alt="android">
-                        <img src="./assets/icon/java.png" alt="java">
-                    </div>
-                    <div class="myproject-button">
-                        <button>edit</button>
-                        <button>delete</button>
-                    </div>
-                </div>
+                {{/each}}
 
             </div>
         </div>
