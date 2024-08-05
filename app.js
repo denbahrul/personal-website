@@ -24,7 +24,7 @@ app.get('/edit-project/:project_id', renderEditProject);
 app.post('/edit-project/:project_id', editProject);
 app.get('/delete-project/:project_id', deleteProject);
 
-app.use('/.netlify/functions/api', router);
+app.use('/app/', router);
 
 app.listen(port, () => {
     console.log(`Aplikasi berjalan pada port ${port}`);
