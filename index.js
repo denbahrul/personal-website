@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const { Sequelize, QueryTypes } = require('sequelize');
 
-const sequelize = new Sequelize('personalweb', 'postgres', 'muhammad68671', {
+const sequelize = new Sequelize('personalweb', 'postgres', 'postgres123', {
     host: 'localhost',
     dialect: 'postgres'
 });
