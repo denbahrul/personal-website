@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const { Sequelize, QueryTypes } = require('sequelize');
 
-const sequelize = new Sequelize('personalweb', 'postgres', 'muhammad68671', {
+const sequelize = new Sequelize('personalweb', 'postgres', 'postgres123', {
     host: 'localhost',
     dialect: 'postgres'
 });
@@ -20,6 +20,8 @@ app.get('/testimonials', renderTestimnonials);
 app.get('/contact', renderContac);
 app.get('/project-detail/:project_id', renderProjectDetail);
 app.get('/edit-project/:project_id', renderEditProject);
+app.get('/register', renderRegister)
+app.get('/login', renderLogin);
 
 app.post('/add-project', addProject)
 app.post('/edit-project/:project_id', editProject);
@@ -29,6 +31,15 @@ app.listen(port, () => {
     console.log(`Aplikasi berjalan pada port ${port}`);
 })
 
+// REGISTER PAGE
+function renderRegister(req, res) {
+    res.render('register');
+}
+
+// LOGIN PAGE
+function renderLogin(req, res) {
+    res.render('login');
+}
 
 // HOME PAGE
 async function renderHome(req, res) {
@@ -48,7 +59,6 @@ async function renderHome(req, res) {
         data: projects,
     });
 };
-
 // delete
 async function deleteProject(req, res) {
     try {
@@ -140,7 +150,7 @@ function renderTestimnonials(req, res) {
     res.render("testimonials");
 };
 
-// CONTAC PAGE
+// CONTACT PAGE
 function renderContac(req, res) {
     res.render("contact");
 };
