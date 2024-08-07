@@ -1,22 +1,29 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const { Sequelize, QueryTypes } = require('sequelize');
+
+const sequelize = new Sequelize('personalweb', 'postgres', 'muhammad68671', {
+    host: 'localhost',
+    dialect: 'postgres'
+});
 
 app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }));
 
 const projects = []
 
 app.get('/', renderHome);
 app.get('/project', renderProject);
-app.post('/add-project', addProject)
 app.get('/testimonials', renderTestimnonials);
 app.get('/contact', renderContac);
 app.get('/project-detail/:project_id', renderProjectDetail);
 app.get('/edit-project/:project_id', renderEditProject);
+
+app.post('/add-project', addProject)
 app.post('/edit-project/:project_id', editProject);
 app.get('/delete-project/:project_id', deleteProject);
 
@@ -25,9 +32,19 @@ app.listen(port, () => {
 })
 
 
-function renderHome(req, res) {
+async function renderHome(req, res) {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+
+    const query = `SELECT * FROM projects`;
+    const result = await sequelize.query(query, { type: QueryTypes.SELECT})
+
     res.render("index", {
-        data: projects,
+        data: result,
     });
 };
 
