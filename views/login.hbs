@@ -43,20 +43,23 @@
             </div>
         </nav>
         <!-- Form -->
-        <form>
+        <form action="/login" method="POST">
             <h1>LOGIN TO YOUR ACCOUNT</h1>
             <div>
                 <label for="emailInput">Email</label>
-                <input id="emailInput" type="email"  required>
+                <input id="emailInput" name="email" type="email"  required>
             </div>
             <div>
                 <label for="passwordInput">Password</label>
-                <input id="passwordInput" type="password" required>
+                <input id="passwordInput" name="password" type="password" required>
             </div>
             <div class="button">
-                <button type="button" onclick="getData()">Login</button>
+                <button type="submint">Login</button>
             </div>
         </form>
+        <div class="register-account">
+            <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
     </body>
     <script src="./assets/script/navbar.js"></script>
 </html>
