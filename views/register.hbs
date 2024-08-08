@@ -43,24 +43,27 @@
             </div>
         </nav>
         <!-- Form -->
-        <form>
+        <form action="/register" method="POST">
             <h1>REGISTER YOUR ACCOUNT</h1>
             <div>
                 <label for="nameInput">Name</label>
-                <input id="nameInput" type="text" required>
+                <input id="nameInput" name="name" type="text" required>
             </div>
             <div>
                 <label for="emailInput">Email</label>
-                <input id="emailInput" type="email"  required>
+                <input id="emailInput" name="email" type="email"  required>
             </div>
             <div>
                 <label for="passwordInput">Password</label>
-                <input id="passwordInput" type="password" required>
+                <input id="passwordInput" name="password" type="password" required>
             </div>
             <div class="button">
-                <button type="button" onclick="getData()">Register</button>
+                <button type="submit">Register</button>
             </div>
         </form>
+        <div class="register-account">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
     </body>
     <script src="./assets/script/navbar.js"></script>
 </html>
