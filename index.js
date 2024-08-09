@@ -2,6 +2,7 @@
 const express = require('express');
 const session = require('express-session');
 const { Sequelize, QueryTypes } = require('sequelize');
+const bcrypt = require('bcrypt')
 
 const app = express();
 const port = 3000;
@@ -54,12 +55,14 @@ function renderRegister(req, res) {
 }
 async function register(req, res) {
     try {
-        console.log(req.body);
+        const {name, email, password} = req.body;
+
+        const hashedPassword = await bcrypt.hash(password, 10)
 
         const query = `INSERT INTO users 
                         (name, email, password)
                         VALUES 
-                        ('${req.body.name}','${req.body.email}','${req.body.password}')`;
+                        ('${name}','${email}','${hashedPassword}')`;
 
         await sequelize.query(query);
     
@@ -78,30 +81,34 @@ function renderLogin(req, res) {
 async function login(req, res) {
     try {
         console.log(req.body);
+        const {email, password} = req.body;
 
         const query = `SELECT * FROM users
                         WHERE
-                        email = '${req.body.email}'`;
+                        email = '${email}'`;
     
         const user = await sequelize.query(query, {type: QueryTypes.SELECT});
     
         if (user.length == 0) {
             console.log("Email belum terdaftar");
-            res.redirect('/login');
-            return
-        } else if (user[0].password !== `${req.body.password}`) {
-            console.log("Password salah");
-            res.redirect('/login');
-            return
-        } else {
-            req.session.user = user[0];
-            req.session.isLogin = true;
+            return res.redirect('/login');
+        } 
 
-            console.log("Login Berhasil");
-            console.log(req.session.user);
-            // console.log(req.session);
-            res.redirect('/');
-        };
+        const isPasswordValid = await bcrypt.compare(password, user[0].password);
+
+        if (!isPasswordValid) {
+            console.log("Password salah");
+            return res.redirect('/login');
+        } 
+
+        req.session.user = user[0];
+        req.session.isLogin = true;
+
+        console.log("Login Berhasil");
+        console.log(req.session.user);
+        // console.log(req.session);
+        res.redirect('/');
+
     } catch(error) {
         console.log(error);
     }

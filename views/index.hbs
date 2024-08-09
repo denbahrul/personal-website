@@ -35,7 +35,7 @@
                 <div class="right">
                     <a class="contact" href="/contact">Contact Me</a>
                     {{#if isLogin}}
-                    <a class="auth" onclick="toggleDropdown()"><i class="fa-solid fa-user"></i>{{user.name}}</a>
+                    <a class="auth" href="/logout"><i class="fa-solid fa-user"></i>{{user.name}}</a>
                     {{else}}
                     <a class="auth" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
                     {{/if}}
