@@ -55,9 +55,10 @@ nav {
 .right {
     display: flex;
     align-items: center;
+    gap: 18px;
 }
 
-.right a {
+.contact {
     align-items: center;
     background-color: black;
     color: white;
@@ -69,6 +70,19 @@ nav {
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
+}
+
+.auth {
+    align-items: center;
+    color: black;
+    font-size: medium;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth i {
+    margin-right: 5px;
 }
 
 /* Dropdowm */

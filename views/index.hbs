@@ -22,16 +22,23 @@
                         <li>
                             <a href="/">Home</a>
                         </li>
+                        {{#if isLogin}}
                         <li>
                             <a href="/project">Add Project</a>
                         </li>
+                        {{/if}}
                         <li>
                             <a href="/testimonials">Testimonials</a>
                         </li>
                     </ul>
                 </div>
                 <div class="right">
-                    <a href="./contact">Contact Me</a>
+                    <a class="contact" href="/contact">Contact Me</a>
+                    {{#if isLogin}}
+                    <a class="auth" href="/logout"><i class="fa-solid fa-user"></i>{{user.name}}</a>
+                    {{else}}
+                    <a class="auth" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                    {{/if}}
                     <button class="dropdown-button" onclick="toggleDropdown()">
                         <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
                     </button>
@@ -93,10 +100,12 @@
                             <img src="./assets/icon/android.png" alt="android">
                             <img src="./assets/icon/java.png" alt="java">
                         </div>
+                        {{#if ../isLogin}}
                         <div class="myproject-button">
                             <a href="/edit-project/{{this.id}}">edit</a>
                             <a href="./delete-project/{{this.id}}" role="button">delete</a>
                         </div>
+                        {{/if}}
                     </div>
                 {{/each}}
 
