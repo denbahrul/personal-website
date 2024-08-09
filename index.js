@@ -1,9 +1,12 @@
+//Import library/module
 const express = require('express');
 const session = require('express-session');
 const { Sequelize, QueryTypes } = require('sequelize');
+
 const app = express();
 const port = 3000;
 
+//Connect to database with squelize
 const sequelize = new Sequelize('personalweb', 'postgres', 'postgres123', {
     host: 'localhost',
     dialect: 'postgres'
@@ -18,7 +21,8 @@ app.use(session({
     secret: 'ytta',
     resave: false,
     saveUninitialized: true,
-    cookie: {maxAge: 1000, secure: true},
+    cookie: {maxAge: 360000, secure: false, httpOnly: true},
+    store: new session.MemoryStore(),
 }));
 
 app.get('/register', renderRegister);
@@ -34,7 +38,9 @@ app.post('/register', register);
 app.post('/login', login);
 app.post('/add-project', addProject);
 app.post('/edit-project/:project_id', editProject);
+
 app.get('/delete-project/:project_id', deleteProject);
+app.get('/logout', logout);
 
 app.listen(port, () => {
     console.log(`Aplikasi berjalan pada port ${port}`);
@@ -42,7 +48,9 @@ app.listen(port, () => {
 
 // REGISTER PAGE
 function renderRegister(req, res) {
-    res.render('register');
+    const isLogin = req.session.isLogin;
+    
+    isLogin ? res.redirect('/') : res.render('register');
 }
 async function register(req, res) {
     try {
@@ -63,7 +71,9 @@ async function register(req, res) {
 
 // LOGIN PAGE
 function renderLogin(req, res) {
-    res.render('login');
+    const isLogin = req.session.isLogin;
+
+    isLogin ? res.redirect('/') : res.render('login');
 }
 async function login(req, res) {
     try {
@@ -88,6 +98,8 @@ async function login(req, res) {
             req.session.isLogin = true;
 
             console.log("Login Berhasil");
+            console.log(req.session.user);
+            // console.log(req.session);
             res.redirect('/');
         };
     } catch(error) {
@@ -95,22 +107,25 @@ async function login(req, res) {
     }
 }
 
+// LOGOUT
+function logout(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
+}
+
 // HOME PAGE
 async function renderHome(req, res) {
+    // console.log(req.session);
+    const {isLogin, user} = req.session;
+    console.log(user);
 
-    console.log(req.session);
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-
-    const query = `SELECT * FROM projects`;
+    const query = `SELECT * FROM projects`;    
     const projects = await sequelize.query(query, { type: QueryTypes.SELECT});
 
     res.render("index", {
         data: projects,
+        isLogin,
+        user,
     });
 };
 // delete
@@ -180,7 +195,9 @@ async function renderProjectDetail(req, res) {
 
 // ADD PROJECT PAGE
 function renderProject(req, res) {
-    res.render("add-project");
+    const isLogin = req.session.isLogin;
+
+    isLogin ? res.render("add-project") : res.redirect('/login');
 };
 async function addProject(req, res) {
     try {
