@@ -2,7 +2,8 @@
 const express = require('express');
 const session = require('express-session');
 const { Sequelize, QueryTypes } = require('sequelize');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const upload = require('./middlewares/uploadFIle');
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,8 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
+app.use("/file-uploads", express.static("file-uploads"))
+
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'ytta',
@@ -37,7 +40,7 @@ app.get('/edit-project/:project_id', renderEditProject);
 
 app.post('/register', register);
 app.post('/login', login);
-app.post('/add-project', addProject);
+app.post('/add-project', upload.single('image'), addProject);
 app.post('/edit-project/:project_id', editProject);
 
 app.get('/delete-project/:project_id', deleteProject);
@@ -208,12 +211,15 @@ function renderProject(req, res) {
 };
 async function addProject(req, res) {
     try {
-        console.log(req.body);
+        console.log(req.file);
+        
+        const {title, startDate, endDate, description} = req.body;
+        const image = req.file.path;
 
         const query = `INSERT INTO projects 
                         (start_date, end_date, description, image, title)
                         VALUES 
-                        ('${req.body.startDate}','${req.body.endDate}','${req.body.description}','${req.body.image}','${req.body.title}')`;
+                        ('${startDate}','${endDate}','${description}','${image}','${title}')`;
      
          await sequelize.query(query);
      
