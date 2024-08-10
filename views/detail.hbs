@@ -59,11 +59,13 @@
                     <div class="tech">
                         <h2>Technologies</h2>
                         <div class="tech-icon">
+                            {{#each data.technologies}}
                             <div>
                                 <img src="/assets/icon/reactjs.png" alt="reactjs"/>
-                                <p>React Js</p>
+                                <p>{{this}}</p>
                             </div>
-                            <div>
+                            {{/each}}
+                            {{!-- <div>
                                 <img src="/assets/icon/nodejs.png" alt="nodejs"/>
                                 <p>Node Js</p>
                             </div>
@@ -74,7 +76,7 @@
                             <div>
                                 <img src="/assets/icon/socket.png" alt="socket io"/>
                                 <p>Socket IO</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

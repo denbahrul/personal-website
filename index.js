@@ -211,15 +211,16 @@ function renderProject(req, res) {
 };
 async function addProject(req, res) {
     try {
-        console.log(req.file);
+        console.log(req.body);
         
         const {title, startDate, endDate, description} = req.body;
         const image = req.file.path;
+        const durationTime = getDurationTime(endDate, startDate);
 
         const query = `INSERT INTO projects 
-                        (start_date, end_date, description, image, title)
+                        (title, start_date, end_date, description, technologies, image, duration_time)
                         VALUES 
-                        ('${startDate}','${endDate}','${description}','${image}','${title}')`;
+                        ('${title}','${startDate}','${endDate}','${description}',ARRAY['${req.body.technologies1}','${req.body.technologies2}','${req.body.technologies3}','${req.body.technologies4}'],'${image}', '${durationTime}')`;
      
          await sequelize.query(query);
      
@@ -238,3 +239,31 @@ function renderTestimnonials(req, res) {
 function renderContac(req, res) {
     res.render("contact");
 };
+
+// Duration Time
+function getDurationTime(endDate, startDate) {
+    let durationTime = new Date(endDate) - new Date(startDate);
+
+    let miliSecond = 1000;
+    let secondInDay = 86400;
+    let dayInMonth = 30;
+    let monthInYear =12;
+
+    let durationTimeInDay = Math.floor(durationTime / (miliSecond * secondInDay));
+    let durationTimeInMonth = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth));
+    let durationTimeInYear = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth * monthInYear));
+
+    let restOfMonthInYear = Math.floor((durationTime%(miliSecond * secondInDay * dayInMonth * monthInYear)) / (miliSecond * secondInDay * dayInMonth))
+
+    if (durationTimeInYear > 0 ) {
+        if (restOfMonthInYear > 0) {
+            return `${durationTimeInYear} tahun ${restOfMonthInYear} bulan`;
+        } else {
+            return `${durationTimeInYear} tahun`;
+        }
+    } else if (durationTimeInMonth > 0 ) {
+        return `${durationTimeInMonth} bulan`;
+    } else {
+        return `${durationTimeInDay} hari`
+    }
+}

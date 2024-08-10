@@ -204,12 +204,18 @@
     object-fit: cover;
 }
 
-.project-body a {
+.project-title {
     text-decoration: none;
     color: black;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    -webkit-line-clamp: 1; 
+    margin-bottom: 4px;
 }
 
-.project-body a:hover {
+.project-title:hover {
     text-decoration: underline;
 }
 
@@ -238,6 +244,12 @@
     -webkit-line-clamp: 3; 
     line-height: 1.2; 
     height: calc(1.2em * 3); 
+}
+
+.dev-by {
+    font-size: x-small;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
 .card-icon {
