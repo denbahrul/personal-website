@@ -97,9 +97,11 @@
                         <p class="description">{{this.description}}</p>
                         <p class="dev-by">Developed by {{../user.name}} </p>
                         <div class="card-icon">
-                            <img src="./assets/icon/play store.png" alt="play store">
-                            <img src="./assets/icon/android.png" alt="android">
-                            <img src="./assets/icon/java.png" alt="java">
+                            {{#each this.technologies}}
+                            <img src="./assets/icon/{{this}}.png" alt="{{this}}">
+                            {{/each}}
+                            {{!-- <img src="./assets/icon/android.png" alt="android">
+                            <img src="./assets/icon/java.png" alt="java"> --}}
                         </div>
                         {{#if ../isLogin}}
                         <div class="myproject-button">

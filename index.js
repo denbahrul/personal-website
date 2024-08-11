@@ -213,16 +213,18 @@ async function addProject(req, res) {
     try {
         console.log(req.body);
         
-        const {title, startDate, endDate, description} = req.body;
+        const {title, startDate, endDate, technologies, description} = req.body;
+        
         const image = req.file.path;
         const durationTime = getDurationTime(endDate, startDate);
+        const technologiesArray = technologies.map(tech => `'${tech}'`).join(',');
 
         const query = `INSERT INTO projects 
                         (title, start_date, end_date, description, technologies, image, duration_time)
                         VALUES 
-                        ('${title}','${startDate}','${endDate}','${description}',ARRAY['${req.body.technologies1}','${req.body.technologies2}','${req.body.technologies3}','${req.body.technologies4}'],'${image}', '${durationTime}')`;
+                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesArray}],'${image}', '${durationTime}')`;
      
-         await sequelize.query(query);
+         await sequelize.query(query,);
      
          res.redirect('/');
     } catch (error) {
