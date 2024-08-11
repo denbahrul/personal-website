@@ -54,16 +54,18 @@
                     <div>
                         <h2>Duration</h2>
                         <p><i class="fa-solid fa-calendar-days fa-xl"></i>{{data.start_date}} - {{data.end_date}}</p>
-                        <p><i class="fa-solid fa-stopwatch fa-xl"></i>1 month</p>
+                        <p><i class="fa-solid fa-stopwatch fa-xl"></i>{{data.duration_time}}</p>
                     </div>
                     <div class="tech">
                         <h2>Technologies</h2>
                         <div class="tech-icon">
+                            {{#each data.technologies}}
                             <div>
-                                <img src="/assets/icon/reactjs.png" alt="reactjs"/>
-                                <p>React Js</p>
+                                <img src="/assets/icon/{{this}}.png" alt="{{this}}"/>
+                                <p>{{this}}</p>
                             </div>
-                            <div>
+                            {{/each}}
+                            {{!-- <div>
                                 <img src="/assets/icon/nodejs.png" alt="nodejs"/>
                                 <p>Node Js</p>
                             </div>
@@ -74,7 +76,7 @@
                             <div>
                                 <img src="/assets/icon/socket.png" alt="socket io"/>
                                 <p>Socket IO</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

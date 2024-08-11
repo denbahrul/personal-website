@@ -47,7 +47,7 @@
         </nav>
 
         <!-- Form -->
-        <form action="/add-project" method="POST">
+        <form action="/add-project" method="POST" enctype="multipart/form-data">
             <h1>ADD MY PROJECT</h1>
             <div>
                 <label for="project-name-input">Project Name</label>
@@ -71,20 +71,28 @@
                 <p>Technologies</p>
                 <div class="checkbox-list">
                     <div>
-                        <input type="checkbox" id="technologies1" name="technologies1">
+                        <input value="Node JS" type="checkbox" id="technologies1" name="technologies">
                         <label for="technologies1">Node Js</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="technologies2" name="technologies2">
+                        <input value="React JS" type="checkbox" id="technologies2" name="technologies">
                         <label for="technologies2">React Js</label><br>
                     </div>
                     <div>
-                        <input type="checkbox" id="technologies3" name="technologies3">
+                        <input value="Next JS" type="checkbox" id="technologies3" name="technologies">
                         <label for="technologies3">Next Js</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="technologies4" name="technologies4">
-                        <label for="technologies4">TypeScript</label>
+                        <input value="JavaScript" type="checkbox" id="technologies4" name="technologies">
+                        <label for="technologies4">JavaScript</label>
+                    </div>
+                    <div>
+                        <input value="Java" type="checkbox" id="technologies4" name="technologies">
+                        <label for="technologies4">Java</label>
+                    </div>
+                    <div>
+                        <input value="Android" type="checkbox" id="technologies4" name="technologies">
+                        <label for="technologies4">Android</label>
                     </div>
                 </div>
             </div>

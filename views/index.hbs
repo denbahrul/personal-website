@@ -89,16 +89,19 @@
     
                 {{#each data}}
                     <div class="project-card">
-                        <img src="/assets/images/project.png" class="card-image" alt="image card">
-                        <a href="./project-detail/{{this.id}}">
+                        <img src="{{this.image}}" class="card-image" alt="image card">
+                        <a class="project-title" href="./project-detail/{{this.id}}">
                             <h2>{{this.title}}</h2>
                         </a>
-                        <p class="duration">durasi : {{this.start_date}}</p>
+                        <p class="duration">durasi : {{this.duration_time}}</p>
                         <p class="description">{{this.description}}</p>
+                        <p class="dev-by">Developed by {{../user.name}} </p>
                         <div class="card-icon">
-                            <img src="./assets/icon/play store.png" alt="play store">
-                            <img src="./assets/icon/android.png" alt="android">
-                            <img src="./assets/icon/java.png" alt="java">
+                            {{#each this.technologies}}
+                            <img src="./assets/icon/{{this}}.png" alt="{{this}}">
+                            {{/each}}
+                            {{!-- <img src="./assets/icon/android.png" alt="android">
+                            <img src="./assets/icon/java.png" alt="java"> --}}
                         </div>
                         {{#if ../isLogin}}
                         <div class="myproject-button">

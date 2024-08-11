@@ -204,12 +204,18 @@
     object-fit: cover;
 }
 
-.project-body a {
+.project-title {
     text-decoration: none;
     color: black;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    -webkit-line-clamp: 1; 
+    margin-bottom: 4px;
 }
 
-.project-body a:hover {
+.project-title:hover {
     text-decoration: underline;
 }
 
@@ -240,14 +246,20 @@
     height: calc(1.2em * 3); 
 }
 
+.dev-by {
+    font-size: x-small;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
 .card-icon {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
 .card-icon img {
-    width: 20px;
+    max-width: 20px;
 }
 
 .myproject-button {

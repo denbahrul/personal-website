@@ -2,7 +2,8 @@
 const express = require('express');
 const session = require('express-session');
 const { Sequelize, QueryTypes } = require('sequelize');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const upload = require('./middlewares/uploadFIle');
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,8 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use("/assets", express.static("assets"));
+app.use("/file-uploads", express.static("file-uploads"))
+
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'ytta',
@@ -37,7 +40,7 @@ app.get('/edit-project/:project_id', renderEditProject);
 
 app.post('/register', register);
 app.post('/login', login);
-app.post('/add-project', addProject);
+app.post('/add-project', upload.single('image'), addProject);
 app.post('/edit-project/:project_id', editProject);
 
 app.get('/delete-project/:project_id', deleteProject);
@@ -209,13 +212,19 @@ function renderProject(req, res) {
 async function addProject(req, res) {
     try {
         console.log(req.body);
+        
+        const {title, startDate, endDate, technologies, description} = req.body;
+        
+        const image = req.file.path;
+        const durationTime = getDurationTime(endDate, startDate);
+        const technologiesArray = technologies.map(tech => `'${tech}'`).join(',');
 
         const query = `INSERT INTO projects 
-                        (start_date, end_date, description, image, title)
+                        (title, start_date, end_date, description, technologies, image, duration_time)
                         VALUES 
-                        ('${req.body.startDate}','${req.body.endDate}','${req.body.description}','${req.body.image}','${req.body.title}')`;
+                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesArray}],'${image}', '${durationTime}')`;
      
-         await sequelize.query(query);
+         await sequelize.query(query,);
      
          res.redirect('/');
     } catch (error) {
@@ -232,3 +241,31 @@ function renderTestimnonials(req, res) {
 function renderContac(req, res) {
     res.render("contact");
 };
+
+// Duration Time
+function getDurationTime(endDate, startDate) {
+    let durationTime = new Date(endDate) - new Date(startDate);
+
+    let miliSecond = 1000;
+    let secondInDay = 86400;
+    let dayInMonth = 30;
+    let monthInYear =12;
+
+    let durationTimeInDay = Math.floor(durationTime / (miliSecond * secondInDay));
+    let durationTimeInMonth = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth));
+    let durationTimeInYear = Math.floor(durationTime / (miliSecond * secondInDay * dayInMonth * monthInYear));
+
+    let restOfMonthInYear = Math.floor((durationTime%(miliSecond * secondInDay * dayInMonth * monthInYear)) / (miliSecond * secondInDay * dayInMonth))
+
+    if (durationTimeInYear > 0 ) {
+        if (restOfMonthInYear > 0) {
+            return `${durationTimeInYear} tahun ${restOfMonthInYear} bulan`;
+        } else {
+            return `${durationTimeInYear} tahun`;
+        }
+    } else if (durationTimeInMonth > 0 ) {
+        return `${durationTimeInMonth} bulan`;
+    } else {
+        return `${durationTimeInDay} hari`
+    }
+}
