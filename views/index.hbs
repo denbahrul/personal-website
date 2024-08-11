@@ -35,7 +35,7 @@
                 <div class="right">
                     <a class="contact" href="/contact">Contact Me</a>
                     {{#if isLogin}}
-                    <a class="auth" href="/logout"><i class="fa-solid fa-user"></i>{{user.name}}</a>
+                    <a class="auth" href="/logout"><i class="fa-solid fa-circle-user fa-xl"></i> Logout</a>
                     {{else}}
                     <a class="auth" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
                     {{/if}}
@@ -46,9 +46,16 @@
             </div>
             <div class="hide" id="dropdown-nav-menu">
                 <a href="/" class="dropdown-nav-list">Home</a>
-                <a href="/project" class="dropdown-nav-list">My Project</a>
+                {{#if isLogin}}
+                <a href="/project" class="dropdown-nav-list">Add Project</a>
+                {{/if}}
                 <a href="/testimonials" class="dropdown-nav-list">Testimonials</a>
                 <a href="/contact" class="contact-me-nav">Contact Me</a>
+                {{#if isLogin}}
+                <a  class="dropdown-nav-list" href="/logout"><i class="fa-solid fa-circle-user"></i> Logout</a>
+                {{else}}
+                <a  class="dropdown-nav-list" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                {{/if}}
             </div>
         </nav>
 
@@ -89,13 +96,13 @@
     
                 {{#each data}}
                     <div class="project-card">
-                        <img src="{{this.image}}" class="card-image" alt="image card">
+                        <img src="/file-uploads/{{this.image}}" class="card-image" alt="image card">
                         <a class="project-title" href="./project-detail/{{this.id}}">
                             <h2>{{this.title}}</h2>
                         </a>
                         <p class="duration">durasi : {{this.duration_time}}</p>
                         <p class="description">{{this.description}}</p>
-                        <p class="dev-by">Developed by {{../user.name}} </p>
+                        <p class="dev-by">Developed by {{this.developer}} </p>
                         <div class="card-icon">
                             {{#each this.technologies}}
                             <img src="./assets/icon/{{this}}.png" alt="{{this}}">

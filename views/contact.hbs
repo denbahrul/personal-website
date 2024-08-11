@@ -21,16 +21,23 @@
                         <li>
                             <a href="/">Home</a>
                         </li>
+                        {{#if isLogin}}
                         <li>
                             <a href="/project">Add Project</a>
                         </li>
+                        {{/if}}
                         <li>
                             <a href="/testimonials">Testimonials</a>
                         </li>
                     </ul>
                 </div>
                 <div class="right">
-                    <a href="./contact">Contact Me</a>
+                    <a class="contact" href="/contact">Contact Me</a>
+                    {{#if isLogin}}
+                    <a class="auth" href="/logout"><i class="fa-solid fa-circle-user fa-xl"></i> Logout</a>
+                    {{else}}
+                    <a class="auth" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                    {{/if}}
                     <button class="dropdown-button" onclick="toggleDropdown()">
                         <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
                     </button>
@@ -38,12 +45,18 @@
             </div>
             <div class="hide" id="dropdown-nav-menu">
                 <a href="/" class="dropdown-nav-list">Home</a>
-                <a href="/project" class="dropdown-nav-list">My Project</a>
+                {{#if isLogin}}
+                <a href="/project" class="dropdown-nav-list">Add Project</a>
+                {{/if}}
                 <a href="/testimonials" class="dropdown-nav-list">Testimonials</a>
                 <a href="/contact" class="contact-me-nav">Contact Me</a>
+                {{#if isLogin}}
+                <a  class="dropdown-nav-list" href="/logout"><i class="fa-solid fa-circle-user"></i> Logout</a>
+                {{else}}
+                <a  class="dropdown-nav-list" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                {{/if}}
             </div>
         </nav>
-
         <!-- Form -->
         <form>
             <h1>GET IN TOUCH</h1>

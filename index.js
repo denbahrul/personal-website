@@ -4,6 +4,7 @@ const session = require('express-session');
 const { Sequelize, QueryTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const upload = require('./middlewares/uploadFIle');
+const { types } = require('pg');
 
 const app = express();
 const port = 3000;
@@ -41,7 +42,7 @@ app.get('/edit-project/:project_id', renderEditProject);
 app.post('/register', register);
 app.post('/login', login);
 app.post('/add-project', upload.single('image'), addProject);
-app.post('/edit-project/:project_id', editProject);
+app.post('/edit-project/:project_id', upload.single('image'), editProject);
 
 app.get('/delete-project/:project_id', deleteProject);
 app.get('/logout', logout);
@@ -67,7 +68,7 @@ async function register(req, res) {
                         VALUES 
                         ('${name}','${email}','${hashedPassword}')`;
 
-        await sequelize.query(query);
+        await sequelize.query(query, {type: QueryTypes.INSERT});
     
         res.redirect('/login')
     } catch (error) {
@@ -83,7 +84,6 @@ function renderLogin(req, res) {
 }
 async function login(req, res) {
     try {
-        console.log(req.body);
         const {email, password} = req.body;
 
         const query = `SELECT * FROM users
@@ -104,11 +104,14 @@ async function login(req, res) {
             return res.redirect('/login');
         } 
 
-        req.session.user = user[0];
+        req.session.user = {
+            id: user[0].users_id, 
+            name: user[0].name, 
+        };
         req.session.isLogin = true;
 
         console.log("Login Berhasil");
-        console.log(req.session.user);
+        console.log(req.session);
         // console.log(req.session);
         res.redirect('/');
 
@@ -127,9 +130,21 @@ function logout(req, res) {
 async function renderHome(req, res) {
     // console.log(req.session);
     const {isLogin, user} = req.session;
-    console.log(user);
 
-    const query = `SELECT * FROM projects`;    
+    if (isLogin) {
+        const query = `SELECT * FROM projects WHERE user_id = '${user.id}'`;
+        const projects = await sequelize.query(query, { type: QueryTypes.SELECT});
+
+        res.render("index", {
+            data: projects,
+            isLogin,
+            user,
+        });
+        return
+    }
+
+    const query = `SELECT * FROM projects`;
+
     const projects = await sequelize.query(query, { type: QueryTypes.SELECT});
 
     res.render("index", {
@@ -156,6 +171,7 @@ async function deleteProject(req, res) {
 // EDIT PROJECT PAGE
 async function renderEditProject(req, res) {
     try {
+        const {isLogin, user} = req.session;
         const id = req.params.project_id;
 
         const query = `SELECT * FROM projects WHERE id=${id}`;
@@ -166,6 +182,8 @@ async function renderEditProject(req, res) {
     
         res.render("edit-project", {
             data : project[0],
+            isLogin,
+            user
         });
     } catch (error) {
         console.log(error);
@@ -174,14 +192,19 @@ async function renderEditProject(req, res) {
 async function editProject(req, res) {
     try {
         console.log(req.body);
+        const {startDate, endDate, description, title, technologies} = req.body;
+
+        const image = req.file.filename;
+        const durationTime = getDurationTime(endDate, startDate);
+        const technologiesArray = Array.isArray(technologies) ? technologies.map(tech => `'${tech}'`).join(',') : `'${technologies}'`;
 
         const id = req.params.project_id;
     
         const query = `UPDATE projects 
-                        SET start_date = '${req.body.startDate}', end_date = '${req.body.endDate}', description = '${req.body.description}', image = '${req.body.image}', title = '${req.body.title}'
+                        SET start_date = '${startDate}', end_date = '${endDate}', description = '${description}', image = '${image}', title = '${title}', technologies = ARRAY[${technologiesArray}], duration_time = '${durationTime}'
                         WHERE id = ${id}`;
 
-        await sequelize.query(query);
+        await sequelize.query(query, {type: QueryTypes.INSERT});
     
         res.redirect('/');
     } catch (error) {
@@ -192,6 +215,7 @@ async function editProject(req, res) {
 // DETAIL PAGE
 async function renderProjectDetail(req, res) {
     const id = req.params.project_id;
+    const {isLogin, user} = req.session;
 
     const query = `SELECT * FROM projects WHERE id=${id}`;
     const result = await sequelize.query(query, { type: QueryTypes.SELECT});
@@ -200,31 +224,33 @@ async function renderProjectDetail(req, res) {
 
     res.render("detail", {
         data : result[0],
+        isLogin,
+        user
     });
 };
 
 // ADD PROJECT PAGE
 function renderProject(req, res) {
-    const isLogin = req.session.isLogin;
+    const {isLogin, user} = req.session;
 
-    isLogin ? res.render("add-project") : res.redirect('/login');
+    isLogin ? res.render("add-project", {isLogin, user}) : res.redirect('/login');
 };
 async function addProject(req, res) {
     try {
-        console.log(req.body);
-        
         const {title, startDate, endDate, technologies, description} = req.body;
+
+        const developer = req.session.user;
         
-        const image = req.file.path;
+        const image = req.file.filename;
         const durationTime = getDurationTime(endDate, startDate);
-        const technologiesArray = technologies.map(tech => `'${tech}'`).join(',');
+        const technologiesArray = Array.isArray(technologies) ? technologies.map(tech => `'${tech}'`).join(',') : `'${technologies}'`;
 
         const query = `INSERT INTO projects 
-                        (title, start_date, end_date, description, technologies, image, duration_time)
+                        (title, start_date, end_date, description, technologies, image, duration_time, developer, user_id)
                         VALUES 
-                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesArray}],'${image}', '${durationTime}')`;
+                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesArray}],'${image}', '${durationTime}', '${developer.name}', '${developer.id}')`;
      
-         await sequelize.query(query,);
+        await sequelize.query(query, {type: QueryTypes.INSERT});
      
          res.redirect('/');
     } catch (error) {
@@ -234,12 +260,19 @@ async function addProject(req, res) {
 
 // TESTIMONIALS PAGE
 function renderTestimnonials(req, res) {
-    res.render("testimonials");
+    const {isLogin, user} = req.session;
+    res.render("testimonials", {
+        isLogin, user
+    });
 };
 
 // CONTACT PAGE
 function renderContac(req, res) {
-    res.render("contact");
+    const {isLogin, user} = req.session;
+
+    res.render("contact", {
+        isLogin, user
+    });
 };
 
 // Duration Time
