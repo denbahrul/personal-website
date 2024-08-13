@@ -245,10 +245,12 @@ async function addProject(req, res) {
         const durationTime = getDurationTime(endDate, startDate);
         const technologiesArray = Array.isArray(technologies) ? technologies.map(tech => `'${tech}'`).join(',') : `'${technologies}'`;
 
+        const technologiesOfProject = technologies == undefined ? null : technologiesArray;
+
         const query = `INSERT INTO projects 
                         (title, start_date, end_date, description, technologies, image, duration_time, developer, user_id)
                         VALUES 
-                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesArray}],'${image}', '${durationTime}', '${developer.name}', '${developer.id}')`;
+                        ('${title}','${startDate}','${endDate}','${description}',ARRAY[${technologiesOfProject}],'${image}', '${durationTime}', '${developer.name}', '${developer.id}')`;
      
         await sequelize.query(query, {type: QueryTypes.INSERT});
      
