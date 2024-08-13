@@ -35,13 +35,16 @@
                 <div class="right">
                     <a class="contact" href="/contact">Contact Me</a>
                     {{#if isLogin}}
-                    <a class="auth" href="/logout"><i class="fa-solid fa-circle-user fa-xl"></i> Logout</a>
+                    <button onclick="profileDropdown()" class="profile-nav-button" href="/logout"><i class="fa-solid fa-circle-user"></i>{{user.name}}</button> 
                     {{else}}
                     <a class="auth" href="/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
                     {{/if}}
                     <button class="dropdown-button" onclick="toggleDropdown()">
                         <i class="fa-duotone fa-solid fa-bars fa-xl"></i>
                     </button>
+                    <div class="profile-nav-menu hide" id="profile-nav-menu">
+                        <a class="auth" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i>Logout</a>
+                    </div>        
                 </div>
             </div>
             <div class="hide" id="dropdown-nav-menu">
