@@ -55,7 +55,8 @@ nav {
 .right {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 12px;
+    position: relative;
 }
 
 .contact {
@@ -72,6 +73,27 @@ nav {
     text-decoration: none;
 }
 
+.profile-nav-button {
+    align-items: center;
+    color: black;
+    font-size: medium;
+    font-family: 'Montserrat', sans-serif;
+    font-size: medium;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+.profile-nav-button i {
+    margin-right: 5px;
+}
+
 .auth {
     align-items: center;
     color: black;
@@ -84,6 +106,21 @@ nav {
 .auth i {
     margin-right: 5px;
 }
+
+.profile-nav-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700;
+    gap: 5px;
+    padding: 12px 20px;
+    margin-top: 100px;
+    border-radius: 10px 0px 10px 10px;
+    right: 0;
+} 
 
 /* Dropdowm */
 .dropdown-button {
@@ -227,5 +264,12 @@ form button {
         display: flex !important;
     }
 
+    .profile-nav-button {
+        display: none;
+    }
+
+    .profile-nav-menu {
+        display: none;
+    }
 }
   
